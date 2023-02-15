@@ -18,7 +18,7 @@
 //        driver.quit();
 //
 //        driver.findElement(By.id("user_email_login"));
-//        UISelectors selectors = new UISelectors();
+//        UISelectors selectors = new UISelectors();...
 //        SystemProperties systemProperties = new SystemProperties();
 //        System.out.println("Logging in by email "+email);
 //        browserNavigation("/login");
