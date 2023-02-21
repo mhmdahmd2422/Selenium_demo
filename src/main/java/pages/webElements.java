@@ -13,4 +13,5 @@ public class webElements {
     static By customerSearch = By.xpath("//input[@id='s2id_autogen1']");
     static By customerResult = By.xpath("//ul[@id='select2-results-1']");
     static By customerResultList = By.xpath( "//ul[@id='select2-results-1']/li");
+    static By sellerSearch = By.xpath("//input[@id='s2id_autogen2']");
 }

@@ -16,6 +16,9 @@ public class BasePage {
     public void waitVisibility(By elementBy) {
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(elementBy));
     }
+    public void waitInvisibility(By elementBy) {
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(elementBy));
+    }
     public void click (By elementBy) {
         waitVisibility(elementBy);
         driver.findElement(elementBy).click();

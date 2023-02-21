@@ -3,7 +3,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import static pages.webElements.*;
 public class loginTest extends BasePage {
-    WebDriver driver;
     public loginTest(WebDriver driver){
         super(driver);
     }

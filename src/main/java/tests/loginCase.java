@@ -1,18 +1,19 @@
 package tests;
 
 import base.BaseTest;
+import org.testng.annotations.*;
 import pages.loginTest;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+
 import java.util.concurrent.TimeUnit;
 
+import static base.BaseTest.driver;
+
 public class loginCase {
-    WebDriver driver;
+
     loginTest objLogin;
-    @BeforeTest
-    public void browserlaunch()
+    @BeforeSuite
+    public void setup()
     {
         driver = BaseTest.StartBrowser("Chrome", "https://cp-stg.isupply.tech/login");
         driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
@@ -24,11 +25,11 @@ public class loginCase {
         objLogin.dashLogin("siteadmin@Isupply.tech", "Qwe@1234");
     }
 
-    @AfterTest
+    @AfterSuite
     //Test cleanup
     public void TeardownTest()
     {
-        driver.quit();
+        driver.close();
     }
 
 }
