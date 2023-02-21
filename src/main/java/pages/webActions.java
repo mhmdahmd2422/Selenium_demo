@@ -1,7 +1,4 @@
-package org.example;
-
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.example.SystemProps;
+package pages;
 
 public class webActions {
 //    public void browserNavigation(String URL, boolean... fullURL) {

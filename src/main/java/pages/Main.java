@@ -1,4 +1,4 @@
-package org.example;
+package pages;
 
 import org.junit.Assert;
 import org.openqa.selenium.*;
@@ -8,10 +8,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.*;
-import org.testng.*;
-import org.example.webElements;
-
-import static org.example.webElements.*;
 
 public class Main extends webElements
 {
@@ -47,7 +43,6 @@ public class Main extends webElements
             }
         }
         Thread.sleep(2000);
-
         List<String> dataExpected = Arrays.asList("API GROW SACHET PDR 10 150 G", "76876", "Sellerman1", "1", "67.00", "0%", "67", "67");
         WebElement SellerInput = driver.findElement(By.xpath("//input[@id='s2id_autogen2']"));
         String sname = "Sellerman1";
@@ -82,7 +77,6 @@ public class Main extends webElements
         productAdd.click();
 
         Thread.sleep(2000);
-
 
         Select select = new Select(driver.findElement(By.xpath("//select[@name='sellers']")));
         select.selectByIndex(1);

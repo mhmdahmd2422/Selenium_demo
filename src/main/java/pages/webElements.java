@@ -1,4 +1,4 @@
-package org.example;
+package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,11 +13,4 @@ public class webElements {
     static By customerSearch = By.xpath("//input[@id='s2id_autogen1']");
     static By customerResult = By.xpath("//ul[@id='select2-results-1']");
     static By customerResultList = By.xpath( "//ul[@id='select2-results-1']/li");
-//    public static void locators(By locator, String item) {
-//        WebElement customerInput = driver.findElement(customerSearch);
-//        customerInput.sendKeys(cname);
-//        //new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfElementLocated(customerResultList));
-//        Thread.sleep(1000);
-//    }
-
 }

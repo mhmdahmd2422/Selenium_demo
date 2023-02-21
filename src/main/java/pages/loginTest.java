@@ -1,12 +1,9 @@
-package org.example;
+package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import static pages.webElements.*;
 public class loginTest extends BasePage {
     WebDriver driver;
-    By emailInput = By.xpath("//input[@id='identifier']");
-    By passwordInput = By.xpath("//input[@name='password']");
-    By submitButton = By.xpath("//button[@id='kt_sign_in_submit']");
-    By confirmSubmit = By.xpath("//button[contains(text(),'Ok, got it!')]");
     public loginTest(WebDriver driver){
         super(driver);
     }
