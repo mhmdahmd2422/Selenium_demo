@@ -14,8 +14,8 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    <suite thread-count="1" name="Test Sample Suite" parallel="false">
-        <test name="TestLogin+Order" preserve-order="true" annotations="JDK">
+    <suite thread-count="1" name="OrderScenario" parallel="false">
+        <test name="LoginCase+OrderCase" preserve-order="true" annotations="JDK">
             <classes>
                 <class name="tests.loginCase"/>
                 <class name="tests.orderCase"/>

@@ -9,7 +9,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.*;
 
-public class Main extends webElements
+import static base.BaseTest.driver;
+
+public class Main extends locators
 {
     public static void main(String[] args) throws InterruptedException {
         String baseURL = "https://cp-stg.isupply.tech";
@@ -35,24 +37,25 @@ public class Main extends webElements
         Thread.sleep(1000);
         List<WebElement> customerTypes = driver.findElements(customerResultList);
         //System.out.println(customerTypes.size());
-        for(WebElement ctype:customerTypes){
+        for (WebElement ctype : customerTypes) {
             //System.out.println("Values " + ctype.getAttribute("innerHTML"));
-            if(ctype.getText().contains(cname)){
+            if (ctype.getText().contains(cname)) {
                 ctype.click();
                 break;
             }
         }
         Thread.sleep(2000);
         List<String> dataExpected = Arrays.asList("API GROW SACHET PDR 10 150 G", "76876", "Sellerman1", "1", "67.00", "0%", "67", "67");
+        List<String> dataExpectedTable = Arrays.asList("", "Sellerman1", "1", "67.00", "SUNDAY: from: 2:38:00 PM to: 5:38:00 PM", "Buyer not coded for this seller", "0", "");
         WebElement SellerInput = driver.findElement(By.xpath("//input[@id='s2id_autogen2']"));
         String sname = "Sellerman1";
         SellerInput.sendKeys(dataExpected.get(2));
         Thread.sleep(2000);
-        List<WebElement> sellerTypes = driver.findElements(By.xpath( "//body/div[@id='select2-drop']/ul[1]/li"));
+        List<WebElement> sellerTypes = driver.findElements(By.xpath("//body/div[@id='select2-drop']/ul[1]/li"));
         System.out.println(sellerTypes.size());
-        for(WebElement stype:sellerTypes){
+        for (WebElement stype : sellerTypes) {
             //System.out.println("Values " + stype.getAttribute("innerHTML"));
-            if(stype.getText().contains(sname)){
+            if (stype.getText().contains(sname)) {
                 stype.click();
                 break;
             }
@@ -63,11 +66,11 @@ public class Main extends webElements
         String pname = "API GROW SACHET PDR 10 150 G";
         productInput.sendKeys(pname);
         Thread.sleep(3000);
-        List<WebElement> productTypes = driver.findElements(By.xpath( "//ul[@id='select2-results-3']/li"));
+        List<WebElement> productTypes = driver.findElements(By.xpath("//ul[@id='select2-results-3']/li"));
         System.out.println(productTypes.size());
-        for(WebElement ptype:productTypes){
+        for (WebElement ptype : productTypes) {
             //System.out.println("Values " + ptype.getAttribute("innerHTML"));
-            if(ptype.getText().contains(pname)){
+            if (ptype.getText().contains(pname)) {
                 ptype.click();
                 break;
             }
@@ -88,6 +91,16 @@ public class Main extends webElements
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", orderSummery);
         Thread.sleep(2000);
+        List<String> dataActual = new ArrayList<>();
+        List<WebElement> orderDetail = driver.findElements(locators.orderSummeryTable);
+        Iterator<WebElement> itr = orderDetail.iterator();
+        while (itr.hasNext()) {
+                String test = itr.next().getText();
+                if (test != null) {
+                    dataActual.add(test);
+                }
+            }
+        Assert.assertEquals(dataExpectedTable, dataActual);
         js.executeScript("arguments[0].click();", orderSend);
 
         driver.get(baseURL + "/orders/order-management");
@@ -97,13 +110,12 @@ public class Main extends webElements
         //System.out.println(orderView.getAttribute("innerHTML"));
         orderView.click();
         Thread.sleep(500);
-        List<WebElement> orderDetail = driver.findElements(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr[1]/td"));
-        System.out.println(orderDetail.size());
-        Iterator<WebElement> itr = orderDetail.iterator();
-        List<String> dataActual = new ArrayList<>();
-        while(itr.hasNext()) {
-            dataActual.add(itr.next().getText());
-        }
-        Assert.assertEquals(dataExpected, dataActual);
-    }
-}
+//        List<WebElement> orderDetail = driver.findElements(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr[1]/td"));
+//        System.out.println(orderDetail.size());
+//        Iterator<WebElement> itr = orderDetail.iterator();
+//        while(itr.hasNext()) {
+//            dataActual.add(itr.next().getText());
+//        }
+//        Assert.assertEquals(dataExpected, dataActual);
+//    }
+    }}

@@ -1,7 +1,6 @@
 package pages;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import static pages.webElements.*;
+import static pages.locators.*;
 public class loginTest extends BasePage {
     public loginTest(WebDriver driver){
         super(driver);
