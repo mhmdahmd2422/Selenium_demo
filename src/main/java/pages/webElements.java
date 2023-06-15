@@ -12,5 +12,6 @@ public class webElements {
     static WebElement orderSend = driver.findElement(locators.orderSave);
     static WebElement productSellerList = driver.findElement(locators.productSellerslist);
     static List<WebElement> orderDetail = driver.findElements(locators.orderSummeryTable);
+    public static WebElement orderView = driver.findElement(By.xpath("//table[@id='DataTables_Table_0']//a[1]"));
 
 }

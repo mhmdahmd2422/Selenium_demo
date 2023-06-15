@@ -21,6 +21,12 @@
                 <class name="tests.orderCase"/>
             </classes>
         </test>
+<!--        <test name="LoginCase+issuedOrderCase" preserve-order="true" annotations="JDK">-->
+<!--            <classes>-->
+<!--                <class name="tests.loginCase"/>-->
+<!--                <class name="tests.issuedOrderCase"/>-->
+<!--            </classes>-->
+<!--        </test>-->
     </suite>
     <properties>
         <maven.compiler.source>15</maven.compiler.source>

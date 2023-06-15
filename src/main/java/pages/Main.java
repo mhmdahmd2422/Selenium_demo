@@ -105,17 +105,17 @@ public class Main extends locators
 
         driver.get(baseURL + "/orders/order-management");
         Thread.sleep(500);
-        WebElement orderView = driver.findElement(By.xpath("//table[@id='DataTables_Table_0']//a"));
+        WebElement orderView = driver.findElement(By.xpath("//table[@id='DataTables_Table_0']//tbody//tr[1]//a[1]"));
         Thread.sleep(500);
         //System.out.println(orderView.getAttribute("innerHTML"));
         orderView.click();
         Thread.sleep(500);
-//        List<WebElement> orderDetail = driver.findElements(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr[1]/td"));
-//        System.out.println(orderDetail.size());
-//        Iterator<WebElement> itr = orderDetail.iterator();
-//        while(itr.hasNext()) {
-//            dataActual.add(itr.next().getText());
-//        }
-//        Assert.assertEquals(dataExpected, dataActual);
-//    }
-    }}
+        List<WebElement> orderDetail2 = driver.findElements(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr[1]/td"));
+        System.out.println(orderDetail.size());
+        Iterator<WebElement> itr2 = orderDetail.iterator();
+        while(itr.hasNext()) {
+            dataActual.add(itr.next().getText());
+        }
+        Assert.assertEquals(dataExpected, dataActual);
+    }
+    }

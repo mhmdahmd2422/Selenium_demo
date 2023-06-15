@@ -21,4 +21,5 @@ public class locators {
     static By orderSummery = By.xpath("//button[contains(text(),'Order Summary')]");
     static By orderSave = By.xpath("//button[contains(text(),'Save')]");
     static By orderSummeryTable = By.xpath("//table[@id='order-summary']//td");
+    static By orderViewTable = By.xpath("//table[@id='DataTables_Table_0']//a");
 }

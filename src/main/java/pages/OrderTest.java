@@ -5,11 +5,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import base.SystemProps;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -17,10 +15,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import static base.BaseTest.driver;
 import static pages.locators.*;
-import static pages.webElements.orderDetail;
-
 public class OrderTest extends BasePage {
     public OrderTest(WebDriver driver){
         super(driver);
@@ -44,7 +39,8 @@ public class OrderTest extends BasePage {
         writeText(customerSearch, strCustomer);
     }
     public void selectCustomer(String strCustomer) throws InterruptedException {
-        Thread.sleep(1000);
+        //Thread.sleep(1000);
+        new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath("//ul[@id='select2-results-1']//li"), 1));
         chooseListedItem(strCustomer, customerResultList);
         new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.numberOfElementsToBe(customerDatatable, 7));
     }
@@ -59,12 +55,15 @@ public class OrderTest extends BasePage {
         new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.presenceOfElementLocated(sellerChoices));
     }
 
-    public void setProduct(String strProduct){
-        writeText(productSearch, strProduct);
+    public void setProduct(String strProduct) throws InterruptedException {
+        click(By.xpath("//div[@id='s2id_select2_ajax_product_id']"));
+        new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id='s2id_autogen3_search']")));
+        writeText(By.xpath("//input[@id='s2id_autogen3_search']"), strProduct);
+        Thread.sleep(10000);
     }
 
     public void selectProduct(String strProduct) throws InterruptedException {
-        Thread.sleep(1000);
+        new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("//ul[@id='select2-results-3']//li[1]"), "Please enter 1 or more character"));
         chooseListedItem(strProduct, productResultList);
     }
     public void addProductstoCart(){
@@ -98,18 +97,5 @@ public class OrderTest extends BasePage {
     public void sendOrder(){
         new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.numberOfElementsToBe(orderSummeryTable, 8));
         jsExecuter(orderSend);
-    }
-    WebElement orderView = driver.findElement(By.xpath("//table[@id='DataTables_Table_0']//a"));
-
-    public void validateOrderIssued(){
-        driver.get("https://cp-stg.isupply.tech/orders/order-management");
-        orderView.click();
-        List<WebElement> orderDetail = driver.findElements(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr[1]/td"));
-        System.out.println(orderDetail.size());
-        Iterator<WebElement> itr = orderDetail.iterator();
-        while(itr.hasNext()) {
-            dataActual.add(itr.next().getText());
-        }
-        Assert.assertEquals(dataExpected, dataActual);
     }
 }
