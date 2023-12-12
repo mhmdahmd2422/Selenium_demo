@@ -22,7 +22,7 @@ public class loginCase {
 
     @Test
     public void testDashboardLogin(){
-        objLogin.dashLogin("siteadmin@Isupply.tech", "Qwe@1234");
+        objLogin.dashLogin("siteadmin@Isupply.tech", "******");
     }
 
     @AfterSuite
